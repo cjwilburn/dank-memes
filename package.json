@@ -1,0 +1,26 @@
+{
+  "name": "dank-memes",
+  "version": "1.0.0",
+  "description": "Only the dankest of dank memes, homnes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/cjwilburn/dank-memes.git"
+  },
+  "keywords": [
+    "dank",
+    "memes",
+    "dank",
+    "meme",
+    "meme"
+  ],
+  "author": "Courtney Wilburn, Andrew Hunder, Cole Kettler, Greg Aiello",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cjwilburn/dank-memes/issues"
+  },
+  "homepage": "https://github.com/cjwilburn/dank-memes#readme"
+}
