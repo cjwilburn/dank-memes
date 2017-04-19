@@ -1,7 +1,7 @@
 {
   "name": "dank-memes",
-  "version": "1.0.0",
-  "description": "Only the dankest of dank memes, homnes.",
+  "version": "1.0.1",
+  "description": "Only the dankest of dank memes, homies.",
   "main": "index.js",
   "scripts": {
     "test": "make test"
@@ -22,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/cjwilburn/dank-memes/issues"
   },
-  "homepage": "https://github.com/cjwilburn/dank-memes#readme"
+  "homepage": "https://github.com/cjwilburn/dank-memes#readme",
+  "dependencies": {
+    "cli-color": "^1.2.0",
+    "commander": "^2.9.0",
+    "gifsicle": "^3.0.4",
+    "giphy-api": "^1.2.5"
+  }
 }
