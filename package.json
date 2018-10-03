@@ -27,6 +27,8 @@
     "cli-color": "^1.2.0",
     "commander": "^2.9.0",
     "gifsicle": "^3.0.4",
-    "giphy-api": "^1.2.5"
+    "giphy-api": "^1.2.5",
+    "node-fetch": "^2.2.0",
+    "request": "^2.88.0"
   }
 }
