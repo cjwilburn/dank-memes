@@ -2,13 +2,17 @@ const https = require("https");
 const opn = require('opn');
 
 let numberOfMemes = 5;
+let filterNSFW = false;
 
 getList();
 
 function createMemeList(body) {
   for (let i = 0; i < numberOfMemes; i++) {
     if (body.data.children[i].data.preview.images[0].source.url) {
-      opn(body.data.children[i].data.preview.images[0].source.url);
+		// Basically doesn't display the image only if the filter is turned on AND the post is nsfw
+		if (filterNSFW == false && body.data.children[i].data.over_18 == false) {
+			opn(body.data.children[i].data.preview.images[0].source.url);
+		}
     }
   }
 }
