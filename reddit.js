@@ -19,11 +19,11 @@ function createMemeList(body) {
 
 function getList() {
   https.get('https://www.reddit.com/r/dankmemes/new.json?sort=new', res => {
-    res.setEncoding("utf8")
-    let body = ""
+    res.setEncoding("utf8");
+    let body = "";
     res.on("data", data => {
-      body += data
-    })
+      body += data;
+    });
     res.on("end", () => {
       body = JSON.parse(body);
       createMemeList(body);
