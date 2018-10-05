@@ -8,17 +8,20 @@ var rl = readline.createInterface({
 });
 
 memeRoulette = () => {
-	rl.question('Insert caption:', (caption) => {
-		if(caption.length) {
-			generateRandomlyCaptionedMeme(caption);
+	rl.question('Please provide a caption (1 of 2):', (caption1) => {
+		if(caption1.length) {
+			rl.question('Please provide a caption (2 of 2, optional):', (caption2 = '') => {
+				generateRandomlyCaptionedMeme(caption1, caption2);
+				rl.close();
+			});
 		} else {
-			console.log('farewell');
+			rl.close();
+			goodbye();
 		}
-		rl.close()
 	});
 }
 
-generateRandomlyCaptionedMeme = (caption) => {
+generateRandomlyCaptionedMeme = (caption1, caption2) => {
 
 	fetch('https://api.imgflip.com/get_memes',{
         method: "GET"
@@ -30,7 +33,8 @@ generateRandomlyCaptionedMeme = (caption) => {
 	.then(id => {
 		fetch(
 			'https://api.imgflip.com/caption_image?template_id=' + id
-			+ '&text0=' + caption
+			+ '&text0=' + caption1
+			+ '&text1=' + caption2
 			+ '&username=dankestofmemes2000'
 			+ '&password=bR[DVqvjPGd87rAUVR8XvBzkNK@viC8W',{
 			method: "POST"
@@ -41,6 +45,10 @@ generateRandomlyCaptionedMeme = (caption) => {
 		})
 		.then(url => {opn(url)})
 	})
+}
+
+goodbye = () => {
+	console.log('Ya done messed up!');
 }
 
 memeRoulette();
