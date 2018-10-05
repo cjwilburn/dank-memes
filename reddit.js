@@ -15,6 +15,7 @@ function createMemeList(body) {
       }
     }
   }
+  console.log('Pulling up some dank reddit memes...');
   process.exit();
 }
 
