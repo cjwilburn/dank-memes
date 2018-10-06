@@ -2,9 +2,9 @@ const readline = require('readline');
 const fetch = require('node-fetch');
 const opn = require('opn');
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+var rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout
 });
 
 const memeRoulette = () => {
@@ -13,6 +13,7 @@ const memeRoulette = () => {
 			rl.question('Please provide a caption (2 of 2, optional):', (caption2 = '') => {
 				generateRandomlyCaptionedMeme(caption1, caption2);
 				rl.close();
+				console.log('Spinning the wheel of memes...');
 			});
 		} else {
 			rl.close();
@@ -43,9 +44,11 @@ const generateRandomlyCaptionedMeme = (caption1, caption2) => {
 		.then(r => {
 			return r.data.url;
 		})
-		.then(url => {opn(url);});
-	});
-};
+		.then(url => {opn(url)})
+		.then(() => process.exit())
+		.catch(console.error)
+	})
+}
 
 const goodbye = () => {
 	console.log('Ya done messed up!');
