@@ -2,34 +2,34 @@ const readline = require('readline');
 const fetch = require('node-fetch');
 const opn = require('opn');
 
-var rl = readline.createInterface({
+const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout
 });
 
-randomMeme = () => {
+const randomMeme = () => {
 	rl.question('Generate random meme?(y/n)', (answer) => {
-		if(answer === "y") {
+		if (answer === "y") {
 			generateRandomMeme();
 			console.log('Fresh-baked meme, coming right up.');
 		} else {
 			console.log('goodbye');
 		}
-		rl.close()
+		rl.close();
 	});
-}
+};
 
-generateRandomMeme = () => {
-	fetch('https://api.imgflip.com/get_memes',{
+const generateRandomMeme = () => {
+	fetch('https://api.imgflip.com/get_memes', {
 		method: "GET"
 	})
-	.then(res => {return res.json()})
-	.then(r => {
-		return (r.data.memes[Math.floor(Math.random() * Math.floor(r.data.memes.length-1))].url)
-	})
-	.then(url => {opn(url)})
-	.then(() => process.exit())
-	.catch(console.error)
+		.then(res => res.json())
+		.then(r => {
+			return (r.data.memes[Math.floor(Math.random() * Math.floor(r.data.memes.length - 1))].url);
+		})
+		.then(url => opn(url))
+		.then(() => process.exit())
+		.catch(console.error);
 }
 
 randomMeme();
