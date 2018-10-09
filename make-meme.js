@@ -7,7 +7,7 @@ const rl = readline.createInterface({
 	output: process.stdout
 });
 
-const makeMeme = () => {
+const chooseMemeBase = () => {
 	fetch('https://api.imgflip.com/get_memes', {
 		method: "GET"
 	})
@@ -16,7 +16,22 @@ const makeMeme = () => {
 		for(var i=0; i<10; i++) {
 			console.log( (i + 1) + '. ' + res.data.memes[i].name );
 		}
+		return res;
 	})
+	.then(res => {
+		rl.question('Choose a meme(1-10)', (answer) => {
+			if ( isNaN(answer) || ! res.data.memes[answer] ) {
+				console.log('Try again!');
+			} else {
+				captionMeme( res.data.memes[answer] );
+			}
+			rl.close();
+		});
+	});
 };
 
-makeMeme();
+const captionMeme = (answer) => {
+	console.log(JSON.stringify(answer));
+};
+
+chooseMemeBase();
