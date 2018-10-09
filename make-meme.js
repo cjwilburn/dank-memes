@@ -19,7 +19,7 @@ const chooseMemeBase = () => {
 		return res;
 	})
 	.then(res => {
-		rl.question('Choose a meme(1-20)', (answer) => {
+		rl.question('Choose a meme(1-20):', (answer) => {
 			if ( isNaN(answer) || ! res.data.memes[answer-1] ) {
 				console.log('Try again!');
 			} else {
