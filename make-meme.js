@@ -52,14 +52,14 @@ const generateMeme = (meme, caption1, caption2) => {
 		+ '&username=dankestofmemes2000'
 		+ '&password=bR[DVqvjPGd87rAUVR8XvBzkNK@viC8W', {
 			method: "POST"
-		})
-		.then(res => { return res.json(); })
-		.then(r => {
-			return r.data.url;
-		})
-		.then(url => opn(url))
-		.then(() => process.exit())
-		.catch(console.error);
+	})
+	.then(res => { return res.json(); })
+	.then(r => {
+		return r.data.url;
+	})
+	.then(url => opn(url))
+	.then(() => process.exit())
+	.catch(console.error);
 };
 
 
