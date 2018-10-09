@@ -13,17 +13,17 @@ const chooseMemeBase = () => {
 	})
 	.then(res => { return res.json(); })
 	.then(res => {
-		for(var i=0; i<10; i++) {
+		for(var i=0; i<20; i++) {
 			console.log( (i + 1) + '. ' + res.data.memes[i].name );
 		}
 		return res;
 	})
 	.then(res => {
-		rl.question('Choose a meme(1-10)', (answer) => {
-			if ( isNaN(answer) || ! res.data.memes[answer] ) {
+		rl.question('Choose a meme(1-20)', (answer) => {
+			if ( isNaN(answer) || ! res.data.memes[answer-1] ) {
 				console.log('Try again!');
 			} else {
-				captionMeme( res.data.memes[answer] );
+				captionMeme( res.data.memes[answer-1] );
 			}
 			rl.close();
 		});
