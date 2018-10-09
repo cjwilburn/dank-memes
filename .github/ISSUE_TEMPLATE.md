@@ -18,7 +18,7 @@
 
 <-- Please provide a summary of the issue -->
 
-### Desscribe Your Environment
+### Describe Your Environment
 
 - OS: <-- Please provide a summary of the issue -->
 - version: <-- Please provide a summary of the issue -->
