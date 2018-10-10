@@ -1,5 +1,5 @@
-const https = require('https');
-const opn = require('opn');
+const https = require("https");
+const opn = require("opn");
 
 let numberOfMemes = 5;
 let filterNSFW = false;
@@ -15,18 +15,19 @@ function createMemeList(body) {
       }
     }
   }
-  console.log('Pulling up some dank reddit memes...');
+  //eslint-disable-next-line
+  console.log("Pulling up some dank reddit memes...");
   process.exit();
 }
 
 function getList() {
-  https.get('https://www.reddit.com/r/dankmemes/new.json?sort=new', (res) => {
-    res.setEncoding('utf8');
-    let body = '';
-    res.on('data', (data) => {
+  https.get("https://www.reddit.com/r/dankmemes/new.json?sort=new", res => {
+    res.setEncoding("utf8");
+    let body = "";
+    res.on("data", data => {
       body += data;
     });
-    res.on('end', () => {
+    res.on("end", () => {
       body = JSON.parse(body);
       createMemeList(body);
     });
