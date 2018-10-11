@@ -7,13 +7,19 @@ const rl = readline.createInterface({
 	output: process.stdout
 });
 
-const darkestDungeonFeedUrl = 'https://www.reddit.com/r/darkestdungeon/hot.json?limit=100';
+const darkestDungeonFeedUrl = 'https://www.reddit.com/r/darkestdungeon/hot.json?limit=150';
 var darkestDungeonMemes = [];
 const maxMemes = 20;
+var memeCounter = 0;
+var afterSlug = '';
 
-const dankestDungeonMemes = () => {
+const dankestDungeonMemes = (after = null) => {
+	var fetchUrl = darkestDungeonFeedUrl;
+	if ( after ) {
+		fetchUrl += '&after=' + after;
+	}
 	console.log('Descending into dankness...');
-	fetch(darkestDungeonFeedUrl, {
+	fetch(fetchUrl, {
 		method: "GET"
 	})
 	.then(res => { return res.json(); })
@@ -24,22 +30,29 @@ const dankestDungeonMemes = () => {
 				darkestDungeonMemes.push(res.data.children[i].data);
 			}
 		}
+		afterSlug = res.data.after;
 	})
 	.then(() => {
 		console.log('Today\'s dankest dungeon memes:');
-		for(var i=0; i<darkestDungeonMemes.length; i++) {
+		for(i = memeCounter; i<darkestDungeonMemes.length; i++) {
 			console.log((i+1) + '. ' + darkestDungeonMemes[i].title);
 		}
-		rl.question('Choose a meme! (1-' + i + '):', (selection) => {
-			if ( isNaN(selection) || ! darkestDungeonMemes[selection-1] ) {
+		console.log('Deeper!')
+		rl.question('Choose a meme! (' + (memeCounter+1) + '-' + i + ') or delve "deeper":', (selection) => {
+			if ( selection.toLowerCase().includes('deeper') ) {
+				memeCounter = i;
+				dankestDungeonMemes(afterSlug);
+			} else if ( isNaN(selection) || ! darkestDungeonMemes[selection-1] ) {
 				console.log('Send this one to journey elsewhere, for we have need of sterner stock.');
 				rl.close();
 				process.exit();
 				return;
+			} else {
+				opn(darkestDungeonMemes[selection-1].url);
+				rl.close();
+				process.exit();
 			}
-			opn(darkestDungeonMemes[selection-1].url);
-			rl.close();
-			process.exit();
+			
 		});
 	});
 };
