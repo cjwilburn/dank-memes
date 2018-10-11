@@ -9,7 +9,6 @@ const rl = readline.createInterface({
 
 const darkestDungeonFeedUrl = 'https://www.reddit.com/r/darkestdungeon/hot.json?limit=150';
 var darkestDungeonMemes = [];
-const maxMemes = 20;
 var memeCounter = 0;
 var afterSlug = '';
 
@@ -28,7 +27,7 @@ const dankestDungeonMemes = (after = null) => {
 	.then(res => { return res.json(); })
 	.then(res => {
 		// Collect only the memes.
-		for(var i=0; i<res.data.children.length && darkestDungeonMemes.length<=maxMemes; i++) {
+		for(var i=0; i<res.data.children.length; i++) {
 			if ('meme' === res.data.children[i].data.link_flair_css_class) {
 				darkestDungeonMemes.push(res.data.children[i].data);
 			}
