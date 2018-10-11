@@ -15,10 +15,13 @@ var afterSlug = '';
 
 const dankestDungeonMemes = (after = null) => {
 	var fetchUrl = darkestDungeonFeedUrl;
+	var message = 'Descending into dankness...';
 	if ( after ) {
 		fetchUrl += '&after=' + after;
+		message = 'Descending deeper into dankness...';
 	}
-	console.log('Descending into dankness...');
+	console.log('');
+	console.log(message);
 	fetch(fetchUrl, {
 		method: "GET"
 	})
@@ -33,12 +36,14 @@ const dankestDungeonMemes = (after = null) => {
 		afterSlug = res.data.after;
 	})
 	.then(() => {
-		console.log('Today\'s dankest dungeon memes:');
+		if ( ! after ) {
+			console.log('Today\'s dankest dungeon memes:');
+		}
 		for(i = memeCounter; i<darkestDungeonMemes.length; i++) {
 			console.log((i+1) + '. ' + darkestDungeonMemes[i].title);
 		}
 		console.log('Deeper!')
-		rl.question('Choose a meme! (' + (memeCounter+1) + '-' + i + ') or delve "deeper":', (selection) => {
+		rl.question('Choose a meme! (1-' + i + ') or delve "deeper":', (selection) => {
 			if ( selection.toLowerCase().includes('deeper') ) {
 				memeCounter = i;
 				dankestDungeonMemes(afterSlug);
