@@ -43,7 +43,7 @@ const dankestDungeonMemes = (after = null) => {
 			console.log((i+1) + '. ' + darkestDungeonMemes[i].title);
 		}
 		console.log('Deeper!')
-		rl.question('Choose a meme! (1-' + i + ') or delve "deeper":', (selection) => {
+		rl.question('Choose a meme! (1-' + i + ') or delve "deeper": ', (selection) => {
 			if ( selection.toLowerCase().includes('deeper') ) {
 				memeCounter = i;
 				dankestDungeonMemes(afterSlug);
