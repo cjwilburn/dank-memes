@@ -31,11 +31,38 @@ const pimpMyMeme = () => {
                 if(caption3 !== '') {
                     captions.three = caption3.split(',');
                 }
-
+       
+                generateMeme(captions);
                 rl.close();
             });
         });
     });
 }
+
+const generateMeme = ({ one, two, three }) => {
+
+    let topText = `Yo dawg, we heard you like ${one}`;
+    let bottomText = `So we put a ${two[0]} in your ${two[1]} so you can ${three[0]} while you ${three[1]}`
+
+    let url = 'https://api.imgflip.com/caption_image?template_id=101716'
+    + '&text0=' + encodeURI(topText)
+    + '&text1=' + encodeURI(bottomText)
+    + '&username=dankestofmemes2000'
+    + '&password=bR[DVqvjPGd87rAUVR8XvBzkNK@viC8W';
+    
+	fetch( url, {
+        method: "POST"
+	})
+	.then(res => { 
+        return res.json(); })
+	.then(r => {
+		return r.data.url;
+	})
+	.then(url => {
+        opn(url);
+        process.exit();
+    })
+    .catch(console.error);  
+};
 
 pimpMyMeme();
