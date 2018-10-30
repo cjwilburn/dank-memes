@@ -44,8 +44,10 @@ const generateRandomlyCaptionedMeme = (caption1, caption2) => {
 				.then(r => {
 					return r.data.url;
 				})
-				.then(url => opn(url))
-				.then(() => process.exit())
+				.then(url => {
+					opn(url);
+					process.exit();
+				})
 				.catch(console.error);
 		});
 }

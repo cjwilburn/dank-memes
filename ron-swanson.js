@@ -42,8 +42,10 @@ const generateMeme = (meme_id, caption1) => {
 	.then(r => {
 		return r.data.url;
 	})
-	.then(url => opn(url))
-	.then(() => process.exit())
+	.then(url => {
+		opn(url);
+		process.exit();
+	})
 	.catch(console.error);
 };
 

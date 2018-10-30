@@ -27,8 +27,10 @@ const generateRandomMeme = () => {
 		.then(r => {
 			return (r.data.memes[Math.floor(Math.random() * Math.floor(r.data.memes.length - 1))].url);
 		})
-		.then(url => opn(url))
-		.then(() => process.exit())
+		.then(url => {
+			opn(url);
+			process.exit();
+		})
 		.catch(console.error);
 }
 
