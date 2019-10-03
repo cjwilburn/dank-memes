@@ -8,15 +8,20 @@ const rl = readline.createInterface({
 });
 
 const randomMeme = () => {
-	rl.question('Generate random meme?(y/n)', (answer) => {
-		if (answer === "y") {
-			generateRandomMeme();
-			console.log('Fresh-baked meme, coming right up.');
-		} else {
-			console.log('goodbye');
-		}
-		rl.close();
-	});
+	if (process.argv[2] && process.argv[2] === '-y') {
+		generateRandomMeme();
+		console.log('Fresh-baked meme, coming right up.');
+	} else {
+		rl.question('Generate random meme?(y/n)', (answer) => {
+			if (answer === "y") {
+				generateRandomMeme();
+				console.log('Fresh-baked meme, coming right up.');
+			} else {
+				console.log('goodbye');
+			}
+			rl.close();
+		});
+	}
 };
 
 const generateRandomMeme = () => {

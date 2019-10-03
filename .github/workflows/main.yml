@@ -6,4 +6,4 @@ jobs:
     - name: Give me a meme
       run: |
         npm install
-        node index.js
+        node index.js -y
