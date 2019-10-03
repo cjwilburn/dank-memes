@@ -7,15 +7,17 @@ const rl = readline.createInterface({
 	output: process.stdout
 });
 
+const invokeGenerateRandomMeme = () => {
+	generateRandomMeme();
+	console.log('Fresh-baked meme, coming right up.');
+};
 const randomMeme = () => {
 	if (process.argv[2] && process.argv[2] === '-y') {
-		generateRandomMeme();
-		console.log('Fresh-baked meme, coming right up.');
+		invokeGenerateRandomMeme();
 	} else {
 		rl.question('Generate random meme?(y/n)', (answer) => {
 			if (answer === "y") {
-				generateRandomMeme();
-				console.log('Fresh-baked meme, coming right up.');
+				invokeGenerateRandomMeme();
 			} else {
 				console.log('goodbye');
 			}
@@ -37,6 +39,6 @@ const generateRandomMeme = () => {
 			process.exit();
 		})
 		.catch(console.error);
-}
+};
 
 randomMeme();
