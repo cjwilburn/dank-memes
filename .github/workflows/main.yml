@@ -1,0 +1,9 @@
+on: [push]
+
+jobs:
+  generator_job:
+    steps:
+    - name: Give me a meme
+      run: |
+        npm install
+        node index.js
