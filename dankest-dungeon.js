@@ -62,3 +62,6 @@ const dankestDungeonMemes = (after = null) => {
 };
 
 dankestDungeonMemes();
+
+module.exports = { darkestDungeonMemes };
+
