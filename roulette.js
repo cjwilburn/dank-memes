@@ -1,6 +1,6 @@
 const readline = require('readline');
 const fetch = require('node-fetch');
-const opn = require('opn');
+const open = require('open');
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -45,7 +45,7 @@ const generateRandomlyCaptionedMeme = (caption1, caption2) => {
 					return r.data.url;
 				})
 				.then(url => {
-					opn(url);
+					open(url);
 					process.exit();
 				})
 				.catch(console.error);

@@ -1,6 +1,6 @@
 const readline = require('readline');
 const fetch = require('node-fetch');
-const opn = require('opn');
+const open = require('open');
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -52,7 +52,7 @@ const dankestDungeonMemes = (after = null) => {
 				process.exit();
 				return;
 			} else {
-				opn(darkestDungeonMemes[selection-1].url);
+				open(darkestDungeonMemes[selection-1].url);
 				rl.close();
 				process.exit();
 			}
