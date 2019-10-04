@@ -7,25 +7,18 @@ const rl = readline.createInterface({
 	output: process.stdout
 });
 
-const chooseMemeBase = () => {
-	fetch('https://api.imgflip.com/get_memes', {
-		method: "GET"
-	})
-	.then(res => { return res.json(); })
-	.then(res => {
-		for(var i=0; i<20; i++) {
-			console.log( (i + 1) + '. ' + res.data.memes[i].name );
+const chooseMemeBase = async () => {
+	const res = await fetch('https://api.imgflip.com/get_memes', { method: "GET" });
+	const json = await res.json();
+	for (let i = 0; i < 20; i++) {
+		console.log(`${i + 1}. ${json.data.memes[i].name}`);
+	}
+	rl.question('Choose a meme(1-20):', (answer) => {
+		if ( isNaN(answer) || ! json.data.memes[answer-1] ) {
+			console.log('Try again!');
+		} else {
+			captionMeme( json.data.memes[answer-1] );
 		}
-		return res;
-	})
-	.then(res => {
-		rl.question('Choose a meme(1-20):', (answer) => {
-			if ( isNaN(answer) || ! res.data.memes[answer-1] ) {
-				console.log('Try again!');
-			} else {
-				captionMeme( res.data.memes[answer-1] );
-			}
-		});
 	});
 };
 
@@ -39,30 +32,24 @@ const captionMeme = (meme) => {
 			});
 		} else {
 			rl.close();
-			goodbye();
+			console.log('Goodbye!');
 		}
 	});
 };
 
-const generateMeme = (meme, caption1, caption2) => {
-	fetch(
-		'https://api.imgflip.com/caption_image?template_id=' + meme.id
-		+ '&text0=' + caption1
-		+ '&text1=' + caption2
-		+ '&username=dankestofmemes2000'
-		+ '&password=bR[DVqvjPGd87rAUVR8XvBzkNK@viC8W', {
-			method: "POST"
-	})
-	.then(res => { return res.json(); })
-	.then(r => {
-		return r.data.url;
-	})
-	.then(url => {
-		opn(url);
-		process.exit();
-	})
-	.catch(console.error);
+const generateMeme = async (meme, caption1, caption2) => {
+	try {
+		const username = 'dankestofmemes2000';
+		const password = 'bR[DVqvjPGd87rAUVR8XvBzkNK@viC8W';
+		const res = await fetch(`https://api.imgflip.com/caption_image?template_id=${meme.id}&text0=${caption1}&text1=${caption2}&username=${username}&password=${password}`);
+		const json = await res.json();
+		if (json.error_message) {
+			throw new Error(json.error_message);
+		}
+		opn(json.data.url);
+	} catch (error) {
+		console.error(error);
+	}
 };
-
 
 chooseMemeBase();
