@@ -11,7 +11,9 @@ function createMemeList(body) {
     if (body.data.children[i].data.preview.images[0].source.url) {
       // Basically doesn't display the image only if the filter is turned on AND the post is nsfw
       if (filterNSFW == false && body.data.children[i].data.over_18 == false) {
-        opn(body.data.children[i].data.preview.images[0].source.url);
+        let url = body.data.children[i].data.preview.images[0].source.url;
+        url = url ? url.replace('&amp;', '&') : null;
+        opn(url);
       }
     }
   }
