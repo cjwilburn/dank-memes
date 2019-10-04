@@ -1,42 +1,33 @@
-const readline = require('readline');
 const fetch = require('node-fetch');
 const opn = require('opn');
+const consoleReader = require('./utils/console-reader');
 
-const rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout
-});
+const pimpMyMeme = async () => {
+	console.log('\nXzibit needs some details...\n');
 
-const pimpMyMeme = () => {
-    console.log('\nXzibit needs some details...\n');
+	// Set some defaults.
+	let captions = {
+		one: 'cars',
+		two: ['car', 'car'],
+		three: ['drive', 'drive']
+	};
 
-    // Set some defaults.
-    let captions = {
-        one: 'cars',
-        two: ['car','car'],
-        three: ['drive','drive']
-    };
+	const caption1 = await consoleReader.question('Yo dawg, we heard you like _____ : ');
+	if (caption1 !== '') {
+		captions.one = caption1;
+	}
 
-    rl.question('Yo dawg, we heard you like _____ : ', caption1 => {
-        if(caption1 !== '') {
-            captions.one = caption1;
-        }
+	const caption2 = await consoleReader.question('So we put a ____ in your ____ : (e.g. - first, second) ');
+	if (caption2 !== '') {
+		captions.two = caption2.split(',');
+	}
 
-        rl.question('So we put a ____ in your ____ : (e.g. - first, second) ', caption2 => {
-            if(caption2 !== '') {
-                captions.two = caption2.split(',');
-            }
+	const caption3 = await consoleReader.question('so you can ____ while you ____ : (e.g. - first, second) ');
+	if (caption3 !== '') {
+		captions.three = caption3.split(',');
+	}
 
-            rl.question('so you can ____ while you ____ : (e.g. - first, second) ', caption3 => {
-                if(caption3 !== '') {
-                    captions.three = caption3.split(',');
-                }
-       
-                generateMeme(captions);
-                rl.close();
-            });
-        });
-    });
+	generateMeme(captions);
 };
 
 const generateMeme = ({ one, two, three }) => {

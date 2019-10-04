@@ -19,19 +19,16 @@ const randomMeme = () => {
 	});
 };
 
-const generateRandomMeme = () => {
-	fetch('https://api.imgflip.com/get_memes', {
-		method: "GET"
-	})
-		.then(res => res.json())
-		.then(r => {
-			return (r.data.memes[Math.floor(Math.random() * Math.floor(r.data.memes.length - 1))].url);
-		})
-		.then(url => {
-			opn(url);
-			process.exit();
-		})
-		.catch(console.error);
-}
+const generateRandomMeme = async () => {
+	try {
+		const res = await fetch('https://api.imgflip.com/get_memes', { method: "GET" });
+		const json = await res.json();
+		const randomUrl = json.data.memes[Math.floor(Math.random() * Math.floor(json.data.memes.length - 1))].url;
+		opn(randomUrl);
+	}
+	catch (error) {
+		console.error(error);
+	}
+};
 
 randomMeme();
