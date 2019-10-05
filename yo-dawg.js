@@ -1,3 +1,3 @@
-const yoDawg = require('./yo-dawg/');
+const yoDawg = require('./yo-dawg/yo-dawg');
 
-yoDawg();
+yoDawg.pimpMyMeme();

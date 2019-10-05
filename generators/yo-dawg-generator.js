@@ -56,12 +56,11 @@ const generateMeme = ({ one, two, three }) => {
 			return r.data.url;
 		})
 		.then(url => {
-			console.log(url);
 			open(url);
 			process.exit();
 		})
 		.catch(console.error);
-}
+};
 
 module.exports = {
 	pimpMyMeme,
