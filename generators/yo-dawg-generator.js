@@ -43,8 +43,8 @@ const generateMeme = ({ one, two, three }) => {
 	let url = 'https://api.imgflip.com/caption_image?template_id=101716'
 		+ '&text0=' + encodeURI(topText)
 		+ '&text1=' + encodeURI(bottomText)
-		+ '&username=stefanfai94'
-		+ '&password=password123';
+		+ '&username=dankestofmemes2000'
+		+ '&password=bR[DVqvjPGd87rAUVR8XvBzkNK@viC8W';
 
 	fetch(url, {
 		method: "POST"
