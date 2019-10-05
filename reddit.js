@@ -1,12 +1,13 @@
 const https = require('https');
 const opn = require('opn');
 
-let numberOfMemes = 5;
-let filterNSFW = false;
+const createMemeList = (body, numberOfMemes = 5, filterNSFW = false) => {
+  // @TODO: Deep check that all the required properties exist.
+  if (typeof body === 'undefined') {
+    return false;
+  }
 
-getList();
-
-function createMemeList(body) {
+  // @TODO: while loop for number or limit whichever comes first.
   for (let i = 0; i < numberOfMemes; i++) {
     if (body.data.children[i].data.preview.images[0].source.url) {
       // Basically doesn't display the image only if the filter is turned on AND the post is nsfw
@@ -18,10 +19,10 @@ function createMemeList(body) {
     }
   }
   console.log('Pulling up some dank reddit memes...');
-  process.exit();
-}
+  return true;
+};
 
-function getList() {
+const getList = () => {
   https.get('https://www.reddit.com/r/dankmemes/new.json?sort=new', (res) => {
     res.setEncoding('utf8');
     let body = '';
@@ -33,4 +34,13 @@ function getList() {
       createMemeList(body);
     });
   });
-}
+
+  return true;
+};
+
+getList();
+
+module.exports = {
+  getList,
+  createMemeList
+};
