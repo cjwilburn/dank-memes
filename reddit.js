@@ -1,5 +1,5 @@
 const https = require('https');
-const opn = require('opn');
+const open = require('open');
 
 const createMemeList = (body, numberOfMemes = 5, filterNSFW = false) => {
   // @TODO: Deep check that all the required properties exist.
@@ -14,7 +14,7 @@ const createMemeList = (body, numberOfMemes = 5, filterNSFW = false) => {
       if (filterNSFW == false && body.data.children[i].data.over_18 == false) {
         let url = body.data.children[i].data.preview.images[0].source.url;
         url = url ? url.replace('&amp;', '&') : null;
-        opn(url);
+        open(url);
       }
     }
   }
