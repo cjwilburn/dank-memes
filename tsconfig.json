@@ -9,9 +9,9 @@
       "types": ["node"]
     },
     "include": [
-      "/*.ts"
+      "*.ts"
     ],
     "exclude": [
-      "node_modules"
+      "./node_modules"
     ]
   }
