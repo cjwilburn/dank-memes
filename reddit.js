@@ -1,34 +1,45 @@
-const https = require('https');
-const opn = require('opn');
+const https = require("https");
+const open = require("open");
 
-let numberOfMemes = 5;
-let filterNSFW = false;
-
-getList();
-
-function createMemeList(body) {
+const createMemeList = (body, numberOfMemes = 5, filterNSFW = false) => {
+  // @TODO: Deep check that all the required properties exist.
+  if (typeof body === "undefined") {
+    getList();
+    return false;
+  }
   for (let i = 0; i < numberOfMemes; i++) {
     if (body.data.children[i].data.preview.images[0].source.url) {
       // Basically doesn't display the image only if the filter is turned on AND the post is nsfw
       if (filterNSFW == false && body.data.children[i].data.over_18 == false) {
-        opn(body.data.children[i].data.preview.images[0].source.url);
+        let url = body.data.children[i].data.preview.images[0].source.url;
+        url = url ? url.replace('&amp;', '&') : null;
+        open(url);
       }
     }
   }
-  console.log('Pulling up some dank reddit memes...');
-  process.exit();
-}
+  console.log("Pulling up some dank reddit memes...");
+  return true;
+};
 
-function getList() {
-  https.get('https://www.reddit.com/r/dankmemes/new.json?sort=new', (res) => {
-    res.setEncoding('utf8');
-    let body = '';
-    res.on('data', (data) => {
+const getList = () => {
+  https.get("https://www.reddit.com/r/dankmemes/new.json?sort=new", res => {
+    res.setEncoding("utf8");
+    let body = "";
+    res.on("data", data => {
       body += data;
     });
-    res.on('end', () => {
+    res.on("end", () => {
       body = JSON.parse(body);
       createMemeList(body);
     });
   });
+
+  return true;
 }
+
+getList();
+
+module.exports = {
+  getList,
+  createMemeList
+};
