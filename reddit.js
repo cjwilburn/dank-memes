@@ -1,17 +1,21 @@
 const https = require("https");
 const open = require("open");
+const get = require("lodash/get");
+const isEmpty = require("lodash/isEmpty");
 
 const createMemeList = (body, numberOfMemes = 5, filterNSFW = false) => {
-  // @TODO: Deep check that all the required properties exist.
-  if (typeof body === "undefined") {
-    getList();
-    return false;
+  if (isEmpty(body.data.children)) {
+   return false;
   }
+
   for (let i = 0; i < numberOfMemes; i++) {
-    if (body.data.children[i].data.preview.images[0].source.url) {
+    const sourceUrl = get(body, `data.children[${i}].data.preview.images[0].source.url`);
+    const isOver18 = get(body, `data.children[${i}].data.over_18`);
+
+    if (sourceUrl) {
       // Basically doesn't display the image only if the filter is turned on AND the post is nsfw
-      if (filterNSFW == false && body.data.children[i].data.over_18 == false) {
-        let url = body.data.children[i].data.preview.images[0].source.url;
+      if (filterNSFW == false && isOver18 == false) {
+        let url = sourceUrl;
         url = url ? url.replace('&amp;', '&') : null;
         open(url);
       }
