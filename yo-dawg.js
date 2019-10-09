@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
 const opn = require('opn');
 const consoleReader = require('./utils/console-reader');
+const config = require('./config.json');
 
 const pimpMyMeme = async () => {
 	console.log('\nXzibit needs some details...\n');
@@ -38,8 +39,8 @@ const generateMeme = ({ one, two, three }) => {
     let url = 'https://api.imgflip.com/caption_image?template_id=101716'
     + '&text0=' + encodeURI(topText)
     + '&text1=' + encodeURI(bottomText)
-    + '&username=dankestofmemes2000'
-    + '&password=bR[DVqvjPGd87rAUVR8XvBzkNK@viC8W';
+	+ `&username=${config.username}`
+    + `&password=${config.password}`;
     
 	fetch( url, {
         method: "POST"

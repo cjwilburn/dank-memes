@@ -1,6 +1,7 @@
 const readline = require('readline');
 const fetch = require('node-fetch');
 const opn = require('opn');
+const config = require('./config.json');
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -49,8 +50,8 @@ const generateMeme = (meme, caption1, caption2) => {
 		'https://api.imgflip.com/caption_image?template_id=' + meme.id
 		+ '&text0=' + caption1
 		+ '&text1=' + caption2
-		+ '&username=dankestofmemes2000'
-		+ '&password=bR[DVqvjPGd87rAUVR8XvBzkNK@viC8W', {
+		+ `&username=${config.username}`
+		+ `&password=${config.password}`, {
 			method: "POST"
 	})
 	.then(res => { return res.json(); })

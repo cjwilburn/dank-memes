@@ -1,11 +1,6 @@
-const readline = require('readline');
 const fetch = require('node-fetch');
 const opn = require('opn');
-
-const rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout
-});
+const config = require('./config.json');
 
 const swansonMemes = [
 	100512419,
@@ -34,8 +29,8 @@ const generateMeme = (meme_id, caption1) => {
 	fetch(
 		'https://api.imgflip.com/caption_image?template_id=' + meme_id
 		+ '&text0=' + caption1
-		+ '&username=dankestofmemes2000'
-		+ '&password=bR[DVqvjPGd87rAUVR8XvBzkNK@viC8W', {
+		+ `&username=${config.username}`
+		+ `&password=${config.password}`, {
 			method: "POST"
 	})
 	.then(res => { return res.json(); })
@@ -43,10 +38,13 @@ const generateMeme = (meme_id, caption1) => {
 		return r.data.url;
 	})
 	.then(url => {
+		console.log(`\n${url}`);
 		opn(url);
 		process.exit();
 	})
-	.catch(console.error);
+	.catch(() => {
+		console.log('\nCould not generate meme. Please check if your Imgflip credentials are correct.');
+	});
 };
 
 generateRandomRonSwansonMeme();
