@@ -57,3 +57,5 @@ const goodbye = () => {
 };
 
 memeRoulette();
+
+module.exports = { memeRoulette };
