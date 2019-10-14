@@ -33,7 +33,7 @@ const pimpMyMeme = async () => {
 const generateMeme = ({ one, two, three }) => {
 
     let topText = `Yo dawg, we heard you like ${one}`;
-    let bottomText = `So we put a ${two[0]} in your ${two[1]} so you can ${three[0]} while you ${three[1]}`
+    let bottomText = `So we put a ${two[0]} in your ${two[1]} so you can ${three[0]} while you ${three[1]}`;
 
     let url = 'https://api.imgflip.com/caption_image?template_id=101716'
     + '&text0=' + encodeURI(topText)
