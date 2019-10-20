@@ -4,8 +4,13 @@
   "description": "Only the dankest of dank memes, homies.",
   "main": "index.js",
   "scripts": {
-    "test": "make test",
+    "test": "ava",
     "lint": "eslint *.js"
+  },
+  "ava": {
+    "files": [
+      "./tests/*.js"
+    ]
   },
   "repository": {
     "type": "git",
@@ -34,12 +39,16 @@
     "gifsicle": "^4.0.1",
     "giphy-api": "^2.0.1",
     "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.17.15",
+    "open": "^6.4.0",
     "opn": "^6.0.0",
     "readline": "^1.3.0"
   },
   "devDependencies": {
+    "ava": "^2.4.0",
     "babel-eslint": "^10.0.3",
     "eslint": "^6.5.1",
-    "eslint-plugin-babel": "^5.2.1"
+    "eslint-plugin-babel": "^5.2.1",
+    "sinon": "^7.5.0"
   }
 }
