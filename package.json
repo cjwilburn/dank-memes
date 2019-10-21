@@ -30,6 +30,7 @@
     "cli-color": "^1.2.0",
     "command-line-tool": "^0.8.0",
     "commander": "^3.0.2",
+    "dotenv": "^8.2.0",
     "es6-promise": "^4.2.5",
     "gifsicle": "^4.0.1",
     "giphy-api": "^2.0.1",
