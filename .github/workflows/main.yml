@@ -1,10 +1,12 @@
 on: [push]
 
-steps:
-- uses: actions/checkout@v1
-- uses: actions/setup-node@v1
-  with:
-    node-version: '10.x'
-- run: npm install
-- run: npm test
-- run: node index.js
+jobs:
+  meme_generator_job:
+  steps:
+  - uses: actions/checkout@v1
+  - uses: actions/setup-node@v1
+    with:
+      node-version: '10.x'
+  - run: npm install
+  - run: npm test
+  - run: node index.js
