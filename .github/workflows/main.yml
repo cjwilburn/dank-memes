@@ -1,9 +1,13 @@
 on: [push]
 
 jobs:
-  generator_job:
+  meme_generator_job:
+    runs-on: ubuntu-18.04
     steps:
-    - name: Give me a meme
-      run: |
-        npm install
-        node index.js
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - run: npm install
+    - run: npm test
+    - run: node index.js
