@@ -1,9 +1,10 @@
 on: [push]
 
-jobs:
-  generator_job:
-    steps:
-    - name: Give me a meme
-      run: |
-        npm install
-        node index.js
+steps:
+- uses: actions/checkout@v1
+- uses: actions/setup-node@v1
+  with:
+    node-version: '10.x'
+- run: npm install
+- run: npm test
+- run: node index.js
