@@ -50,7 +50,7 @@ const generateRandomlyCaptionedMeme = (caption1, caption2) => {
 				})
 				.catch(console.error);
 		});
-}
+};
 
 const goodbye = () => {
 	console.log('Ya done messed up!');

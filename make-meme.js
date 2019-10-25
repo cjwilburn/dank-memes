@@ -39,7 +39,7 @@ const captionMeme = (meme) => {
 			});
 		} else {
 			rl.close();
-			goodbye();
+			console.log('goodbye!');
 		}
 	});
 };
