@@ -4,7 +4,8 @@
   "description": "Only the dankest of dank memes, homies.",
   "main": "index.js",
   "scripts": {
-    "test": "ava",
+    "test": "ava --verbose",
+    "test:watch": "ava --verbose --watch",
     "lint": "eslint *.js"
   },
   "ava": {
@@ -31,10 +32,12 @@
   "homepage": "https://github.com/cjwilburn/dank-memes#readme",
   "dependencies": {
     "@octokit/rest": "^16.13.1",
+    "ava": "^2.4.0",
     "chalk": "^2.4.1",
     "cli-color": "^1.2.0",
     "command-line-tool": "^0.8.0",
     "commander": "^3.0.2",
+    "dotenv": "^8.2.0",
     "es6-promise": "^4.2.5",
     "gifsicle": "^4.0.1",
     "giphy-api": "^2.0.1",
