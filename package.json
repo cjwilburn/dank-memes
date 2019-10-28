@@ -6,7 +6,8 @@
   "scripts": {
     "test": "ava --verbose",
     "test:watch": "ava --verbose --watch",
-    "lint": "eslint *.js"
+    "lint": "eslint *.js",
+    "update-coc": "weallbehave -o . && git add CODE_OF_CONDUCT.md && git commit -m 'docs(coc): updated CODE_OF_CONDUCT.md'"
   },
   "ava": {
     "files": [
@@ -24,7 +25,25 @@
     "meme",
     "meme"
   ],
-  "author": "Courtney Wilburn, Andrew Hunder, Cole Kettler, Greg Aiello",
+  "author": {
+    "name": "Courtney Wilburn",
+    "email": "courtney@cjwilburn.com",
+    "twitter": "@cjwilburn"
+  },
+  "contributors": [
+    {
+      "name": "Cole Kettler",
+      "email": "colekettler@gmail.com",
+      "coc-enforcer": true
+    },
+    {
+      "name": "Greg Aiello",
+      "email": "nobody@gmail.com"
+    },
+    {
+      "name": "Gustave Gerhardt"
+    }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/cjwilburn/dank-memes/issues"
@@ -45,7 +64,8 @@
     "lodash": "^4.17.15",
     "open": "^6.4.0",
     "opn": "^6.0.0",
-    "readline": "^1.3.0"
+    "readline": "^1.3.0",
+    "weallbehave": "^1.2.0"
   },
   "devDependencies": {
     "ava": "^2.4.0",
