@@ -65,6 +65,15 @@ Once the maintainers get involved, they will follow a documented series of steps
 
 ### Contacting Maintainers
 
+You may get in touch with the maintainer team through any of the following methods:
+
+  * Through email:
+    * [courtney@cjwilburn.com](mailto:courtney@cjwilburn.com) (Courtney Wilburn)
+    * [colekettler@gmail.com](mailto:colekettler@gmail.com) (Cole Kettler)
+    * [nobody@gmail.com](mailto:nobody@gmail.com) (Greg Aiello)
+
+  * Through Twitter:
+    * [@cjwilburn](https://twitter.com/cjwilburn) (Courtney Wilburn)
 
 ### Further Enforcement
 
