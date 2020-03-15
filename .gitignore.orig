@@ -1,0 +1,7 @@
+node_modules/*
+.vscode
+<<<<<<< HEAD
+config.json
+=======
+.env
+>>>>>>> 6b9a6b08f27c0f26ee3d39574d6a2ad0a1729b11

@@ -8,7 +8,7 @@ Steps to get the aplication running
 2. Create `config.json` in the root of the project and set inside your <a href="https://imgflip.com">https://imgflip.com</a> credentials:
     ```
     {
-        "username": "your_username"
+        "username": "your_username",
         "password": "your_password"
     }
     ```

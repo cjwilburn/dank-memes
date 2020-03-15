@@ -1,6 +1,6 @@
 const readline = require('readline');
 const fetch = require('node-fetch');
-const opn = require('opn');
+const open = require('open');
 const config = require('./config.json');
 
 const rl = readline.createInterface({
@@ -40,7 +40,7 @@ const captionMeme = (meme) => {
 			});
 		} else {
 			rl.close();
-			goodbye();
+			console.log('goodbye!');
 		}
 	});
 };
@@ -59,7 +59,7 @@ const generateMeme = (meme, caption1, caption2) => {
 		return r.data.url;
 	})
 	.then(url => {
-		opn(url);
+		open(url);
 		process.exit();
 	})
 	.catch(console.error);

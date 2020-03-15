@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const opn = require('opn');
+const open = require('open');
 const config = require('./config.json');
 
 const swansonMemes = [
@@ -39,7 +39,7 @@ const generateMeme = (meme_id, caption1) => {
 	})
 	.then(url => {
 		console.log(`\n${url}`);
-		opn(url);
+		open(url);
 		process.exit();
 	})
 	.catch(() => {
