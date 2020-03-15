@@ -1,7 +1,5 @@
-require("dotenv").config();
-
 const fetch = require("node-fetch");
-const opn = require("opn");
+const open = require("open");
 const consoleReader = require("./utils/console-reader");
 
 /**
@@ -41,7 +39,7 @@ const generateMeme = async ({ topText, bottomText }) => {
   try {
     const response = await fetch(memeUrl, { method: "POST" });
     const json = await response.json();
-    if (json.data.url) opn(json.data.url);
+    if (json.data.url) open(json.data.url);
   } catch (err) {
     console.log(err);
   }
