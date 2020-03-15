@@ -4,7 +4,7 @@ const get = require("lodash/get");
 const isEmpty = require("lodash/isEmpty");
 
 const createMemeList = (body, numberOfMemes = 5, filterNSFW = false) => {
-  if (isEmpty(body.data.children)) {
+  if (isEmpty(body, "data.children")) {
    return false;
   }
 
