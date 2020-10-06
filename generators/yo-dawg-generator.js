@@ -3,7 +3,7 @@ const open = require('open');
 const consoleReader = require('../utils/console-reader');
 const config = require('../config.json');
 
-const pimpMyMeme = async () => {
+const getMeme = async () => {
 	console.log('\nXzibit needs some details...\n');
 
 	const captions = await requestCaptions();
@@ -65,7 +65,7 @@ const generateMeme = ({ one, two, three }) => {
 };
 
 module.exports = {
-	pimpMyMeme,
+	getMeme,
 	requestCaptions,
 	generateMeme,
 };

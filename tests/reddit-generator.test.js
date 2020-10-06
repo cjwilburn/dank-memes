@@ -1,6 +1,6 @@
 import test from "ava";
 
-import { getList, createMemeList } from "../reddit";
+import { getMeme, createMemeList } from "../generators/reddit-generator";
 
 
 const fakeBody = {
@@ -13,7 +13,7 @@ const fakeBody = {
 };
 
 test("test reddit.js > getList() is running", async t => {
-  t.is(getList(), true);
+  t.is(getMeme(), true);
 });
 
 test("test reddit.js > createMemeList() returns false early if no body provided", async t => {

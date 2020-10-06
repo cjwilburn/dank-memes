@@ -2,7 +2,7 @@ import test from "ava";
 import sinon from "sinon";
 const consoleReader = require("../utils/console-reader");
 
-import { getInputStrings } from "../explain-to-mom";
+import { getInputStrings } from "../generators/explain-to-mom-generator";
 
 let consoleReaderMock;
 
