@@ -82,7 +82,6 @@ const generateMeme = async ({ textOne, textTwo, textThree }) => {
   try {
     const response = await fetch(memeUrl, { method: "POST" });
     const json = await response.json();
-    console.log(json);
     if (json.data.url) open(json.data.url);
   } catch (err) {
     console.log(err);
