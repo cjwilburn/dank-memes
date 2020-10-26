@@ -1,6 +1,5 @@
 const fetch = require("node-fetch");
 const open = require("open");
-const querystring = require("querystring");
 const { username, password } = require('../config.json');
 const consoleReader = require("../utils/console-reader");
 
@@ -31,8 +30,6 @@ const getInputStrings = async () => {
  * @param {Object.bottomText} bottomText for meme
  */
 const generateMeme = async ({ topText, bottomText }) => {
-  const apiUrl = "https://api.imgflip.com/caption_image?";
-  // const memeUrl = `${apiUrl}&text0=${encodeURI(topText)}&text1=${encodeURI(bottomText)}&text2=${encodeURI('real life')}&username=${username}&password=${password}`;
   const boxes = [
     {
         "text": "Can we make it say anything",
@@ -45,30 +42,40 @@ const generateMeme = async ({ topText, bottomText }) => {
     },
     {
         "text": "We sure can",
-        "x": 10,
-        "y": 225,
-        "width": 548,
+        "x": 200,
+        "y": 0,
+        "width": 100,
         "height": 100,
         "color": "#ffffff",
         "outline_color": "#000000"
-    }
+    },
+    {
+      "text": "What is this?",
+      "x": 0,
+      "y": 200,
+      "width": 200,
+      "height": 100,
+      "color": "#ffffff",
+      "outline_color": "#000000"
+  }
   ];
 
-  const textBoxData = boxes.map(({text}, index) => `boxes[${index}][text]=${encodeURI(text)}`).join('&');
-  console.log(textBoxData);
+const textBoxData = boxes.map((box, boxIndex) =>
+  Object.entries(box).map(
+    boxData => [`boxes[${boxIndex}][${boxData[0]}]`, encodeURIComponent(boxData[1])].join('=')
+  ).join('&')
+).join('&');
 
-  const memeUrl = apiUrl + new URLSearchParams({
+  const creds = new URLSearchParams({
     template_id: 137635600,
     username,
     password,
-  }) + '&' + textBoxData;
+  });
 
-  console.log(memeUrl);
+  const memeUrl = `https://api.imgflip.com/caption_image?${creds}&${textBoxData}`;
 
   try {
-    const response = await fetch(memeUrl, {
-      method: "POST",
-    });
+    const response = await fetch(memeUrl, { method: "POST" });
     const json = await response.json();
     console.log(json);
     if (json.data.url) open(json.data.url);
