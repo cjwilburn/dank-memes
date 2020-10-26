@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
 const open = require("open");
-const { username, password } = require('../config.json');
+const { username, password } = require("../config.json");
 const consoleReader = require("../utils/console-reader");
 
 /**
@@ -32,39 +32,40 @@ const getInputStrings = async () => {
 const generateMeme = async ({ topText, bottomText }) => {
   const boxes = [
     {
-        "text": "Can we make it say anything",
-        "x": 10,
-        "y": 10,
-        "width": 548,
-        "height": 100,
-        "color": "#ffffff",
-        "outline_color": "#000000"
+      text: "TEACHERS",
+      x: 40,
+      y: 110,
+      width: 500,
+      height: 103,
     },
     {
-        "text": "We sure can",
-        "x": 200,
-        "y": 0,
-        "width": 100,
-        "height": 100,
-        "color": "#ffffff",
-        "outline_color": "#000000"
+      text: "A Global Pandemic",
+      x: 750,
+      y: 250,
+      width: 300,
+      height: 200,
     },
     {
-      "text": "What is this?",
-      "x": 0,
-      "y": 200,
-      "width": 200,
-      "height": 100,
-      "color": "#ffffff",
-      "outline_color": "#000000"
-  }
+      text: "Is this a reason for more homework?",
+      x: 30,
+      y: 980,
+      width: 1000,
+      height: 70,
+    },
   ];
 
-const textBoxData = boxes.map((box, boxIndex) =>
-  Object.entries(box).map(
-    boxData => [`boxes[${boxIndex}][${boxData[0]}]`, encodeURIComponent(boxData[1])].join('=')
-  ).join('&')
-).join('&');
+  const textBoxData = boxes
+    .map((box, boxIndex) =>
+      Object.entries(box)
+        .map((boxData) =>
+          [
+            `boxes[${boxIndex}][${boxData[0]}]`,
+            encodeURIComponent(boxData[1]),
+          ].join("=")
+        )
+        .join("&")
+    )
+    .join("&");
 
   const creds = new URLSearchParams({
     template_id: 137635600,
@@ -97,5 +98,5 @@ const getMeme = async () => {
 module.exports = {
   getInputStrings,
   generateMeme,
-  getMeme
+  getMeme,
 };
