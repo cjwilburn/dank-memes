@@ -5,50 +5,54 @@ const consoleReader = require("../utils/console-reader");
 
 /**
  * Get input strings from console.
+ *
  * @returns {object}
  */
 const getInputStrings = async () => {
-  let topText = "Something in my daughter's hand";
-  let bottomText = "Is this food?";
+  let textOne = "TEACHERS";
+  let textTwo = "A Global Pandemic";
+  let textThree = "Is this a reason for more homework?";
 
-  // const response1 = await consoleReader.question("What are we explaining? ");
-  // topText = response1 !== "" ? response1 : topText;
+  const response1 = await consoleReader.question("Text above guy's head: ");
+  textOne = response1 !== "" ? response1 : textOne;
 
-  // const response2 = await consoleReader.question(
-  //   "Who are we explaining it to? "
-  // );
-  // bottomText = response2 !== "" ? response2 : bottomText;
+  const response2 = await consoleReader.question("Text below butterfly: ");
+  textTwo = response2 !== "" ? response2 : textTwo;
 
-  return { topText, bottomText };
+  const response3 = await consoleReader.question("Bottom text: ");
+  textThree = response3 !== "" ? response3 : textThree;
+
+  return { textOne, textTwo, textThree };
 };
 
 /**
  * Generate meme from api repsonse.
  *
  * @param {Object} Text for meme
- * @param {Object.topText} topText for meme
- * @param {Object.bottomText} bottomText for meme
+ * @param {Object.textOne} Guy text for meme
+ * @param {Object.textTwo} Butterfly text for meme
+ * @param {Object.textThree} Bottom text for meme
  */
-const generateMeme = async ({ topText, bottomText }) => {
+const generateMeme = async ({ textOne, textTwo, textThree }) => {
   const boxes = [
     {
-      text: "TEACHERS",
+      text: textOne,
       x: 40,
       y: 110,
       width: 500,
       height: 103,
     },
     {
-      text: "A Global Pandemic",
+      text: textTwo,
       x: 750,
-      y: 250,
+      y: 300,
       width: 300,
       height: 200,
     },
     {
-      text: "Is this a reason for more homework?",
+      text: textThree,
       x: 30,
-      y: 980,
+      y: 975,
       width: 1000,
       height: 70,
     },
@@ -90,7 +94,9 @@ const generateMeme = async ({ topText, bottomText }) => {
  * Build the meme.
  */
 const getMeme = async () => {
-  console.log("Make your own 'Me explaining to my mom' meme...\n");
+  console.log(
+    "Make your own 'Butterly Man' meme...(Press enter for defaults)\n"
+  );
   const memeText = await getInputStrings();
   generateMeme(memeText);
 };
