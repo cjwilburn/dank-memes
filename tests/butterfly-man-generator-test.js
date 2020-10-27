@@ -1,5 +1,8 @@
 import test from "ava";
-const { getInputStrings } = require("../generators/butterfly-man-generator");
+const {
+  processBoxData,
+  getInputStrings,
+} = require("../generators/butterfly-man-generator");
 const consoleReader = require("../utils/console-reader");
 const sinon = require("sinon");
 
@@ -40,4 +43,20 @@ test.serial("getInputStrings should return supplied values", async (t) => {
 
   t.true(consoleReaderMock.calledThrice);
   t.deepEqual(inputStrings, { textOne, textTwo, textThree });
+});
+
+test("processBoxData should format box data for request url", async (t) => {
+  const testBoxData = [
+    {
+      text: "Test1",
+    },
+    {
+      text: "Test2",
+    },
+  ];
+
+  t.is(
+    processBoxData(testBoxData),
+    "boxes[0][text]=Test1&boxes[1][text]=Test2"
+  );
 });
