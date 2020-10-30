@@ -26,6 +26,27 @@ const getInputStrings = async () => {
 };
 
 /**
+ * Processes multiple box data for request
+ *
+ * @param {String} data Url friendly format box data
+ *
+ * @returns {string}
+ */
+const processBoxData = (data) =>
+  data
+    .map((box, boxIndex) =>
+      Object.entries(box)
+        .map((boxData) =>
+          [
+            `boxes[${boxIndex}][${boxData[0]}]`,
+            encodeURIComponent(boxData[1]),
+          ].join("=")
+        )
+        .join("&")
+    )
+    .join("&");
+
+/**
  * Generate meme from api repsonse.
  *
  * @param {Object} Text for meme
@@ -57,19 +78,7 @@ const generateMeme = async ({ textOne, textTwo, textThree }) => {
       height: 70,
     },
   ];
-
-  const textBoxData = boxes
-    .map((box, boxIndex) =>
-      Object.entries(box)
-        .map((boxData) =>
-          [
-            `boxes[${boxIndex}][${boxData[0]}]`,
-            encodeURIComponent(boxData[1]),
-          ].join("=")
-        )
-        .join("&")
-    )
-    .join("&");
+  const textBoxData = processBoxData(boxes);
 
   const creds = new URLSearchParams({
     template_id: 137635600,
@@ -104,4 +113,5 @@ module.exports = {
   getInputStrings,
   generateMeme,
   getMeme,
+  processBoxData,
 };
