@@ -1,13 +1,33 @@
-on: [push]
+on: [push, pull_request]
 
 jobs:
-  meme_generator_job:
+  meme_generator_npm_job:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - run: npm install
-    - run: npm test
-    - run: node index.js
+    - name: Create config.json
+      run: echo "{\"username\":\"${{ secrets.USER }}\",\"password\":\"${{ secrets.PASS }}\"}" > config.json
+    - name: Install dependencies
+      run: npm install
+    - name: Run tests
+      run: npm test
+    - name: Run app
+      run: node index.js
+  meme_generator_yarn_job:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Create config.json
+      run: echo "{\"username\":\"${{ secrets.USER }}\",\"password\":\"${{ secrets.PASS }}\"}" > config.json
+    - name: Install dependencies
+      run: yarn install
+    - name: Run tests
+      run: yarn test
+    - name: Run app
+      run: node index.js
